@@ -1,0 +1,24 @@
+name: Publish GIT Wizard
+
+on:
+    push:
+      tags:
+        - 'v*.*.*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: actions/setup-docker@v2
+        with:
+          dockerfile: ./dockerfiles/prod.Dockerfile
+
+      - name: Build and run Docker container
+        run: |
+          docker build -f prod.Dockerfile -t git-wizard .
+          docker run -e NPMJS_AUTHENTICATION_KEY=${{ secrets.NPMJS_AUTHENTICATION_KEY }} git-wizard
