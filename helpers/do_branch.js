@@ -3,6 +3,7 @@ import { doMenu } from '../constants/enums.js'
 import getBranchIdFromBranchName from './get_branch_id.js'
 import { getCommitMessage } from './git_commits.js'
 import { commitAndPush } from './git_push.js'
+import { squashToFirstCommitMessage } from './git_squash.js'
 import { exit } from 'process'
 
 
@@ -16,6 +17,9 @@ async function doBranch() {
         case doMenu.ADD_CHANGES:
             await addChangesToRemote()
             break;
+        case doMenu.SQUASH:
+            await squashCommitMessage()
+            break;
         case doMenu.EXIT:
             exit(0)
         default:
@@ -23,21 +27,21 @@ async function doBranch() {
     }
 }
 
-async function stash() { 
+async function stash() {
     console.log("Under the development...")
 }
 
 async function addChangesToRemote() {
     const branchId = await getBranchIdFromBranchName()
-    const commitMessage = await getCommitMessage({ branchNumber: branchId, issueType: "Feat" })
+    const commitMessage = await getCommitMessage({ branchNumber: branchId, issueType: "Feat", topic: "Add Changes" })
     await commitAndPush(commitMessage)
 }
 
-async function squashCommitMessage() { 
-    console.log("Under the development...")
+async function squashCommitMessage() {
+    await squashToFirstCommitMessage("Feat")
 }
 
-async function tagRelease() { 
+async function tagRelease() {
     console.log("Under the development...")
 }
 
