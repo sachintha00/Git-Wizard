@@ -8,7 +8,6 @@ RUN npm install
 
 COPY . .
 
-# Bump version and publish
-CMD npm version patch -m "Bump version to %s" && \
+CMD npm version ${{ RELEASE_VERSION }} -m "Bump version to %s" && \
     echo "//registry.npmjs.org/:_authToken=${NPMJS_AUTHENTICATION_KEY}" > ~/.npmrc && \
     npm publish --access publish

@@ -50,7 +50,10 @@ async function commitAndPush(commitMessage) {
             ]);
 
             if (confirmPush.confirmPush) {
+                const spinnerPush = createSpinner('Pushing changes to remote branch...')
+                spinnerPush.start()
                 await executeCommand(`git push origin ${branchName}`);
+                spinnerPush.success("done")
                 console.log(chalk.green('Changes pushed successfully.'));
             } else {
                 console.log(chalk.yellow('Push canceled by user.'));
@@ -67,7 +70,10 @@ async function commitAndPush(commitMessage) {
             ]);
 
             if (confirmForcePush.confirmForcePush) {
-                await executeCommand(`git push -f origin ${branchName}`);
+                const spinnerPushUpStream = createSpinner('Pushing changes to remote branch...')
+                spinnerPushUpStream.start()
+                await executeCommand(`git push --set-upstream origin ${branchName}`);
+                spinnerPushUpStream.success("done")
                 console.log(chalk.green('Force push successful.'));
             } else {
                 console.log(chalk.yellow('Push canceled by user.'));

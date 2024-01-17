@@ -3,8 +3,8 @@ import gradient from 'gradient-string'
 import figlet from 'figlet'
 import inquirer from 'inquirer'
 
-async function getCommitMessage({ branchNumber, issueType }) {
-    console.log(chalk.bold(gradient.pastel(figlet.textSync('ADD    CHANGES'))));
+async function getCommitMessage({ branchNumber, issueType, topic }) {
+    console.log(chalk.bold(gradient.pastel(figlet.textSync(topic))));
     console.log("\n\n")
     const { commitMessage } = await inquirer.prompt([
         {
