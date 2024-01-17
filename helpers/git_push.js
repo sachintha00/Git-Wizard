@@ -65,7 +65,7 @@ async function commitAndPush(commitMessage) {
                     type: 'confirm',
                     name: 'confirmForcePush',
                     message: `Remote branch #${branchName} does not exist. Do you want to force push?`,
-                    default: false,
+                    default: true,
                 },
             ]);
 

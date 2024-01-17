@@ -3,6 +3,7 @@ import { doMenu } from '../constants/enums.js'
 import getBranchIdFromBranchName from './get_branch_id.js'
 import { getCommitMessage } from './git_commits.js'
 import { commitAndPush } from './git_push.js'
+import { releaseBetaTag, revertLatestBetaTag } from './beta_tag.js'
 import { squashToFirstCommitMessage } from './git_squash.js'
 import { exit } from 'process'
 
@@ -19,6 +20,12 @@ async function doBranch() {
             break;
         case doMenu.SQUASH:
             await squashCommitMessage()
+            break;
+        case doMenu.TAG_RELEASE:
+            await tagRelease()
+            break;
+        case doMenu.REVERT_LATEST_BETA_TAG:
+            await tagRevert()
             break;
         case doMenu.EXIT:
             exit(0)
@@ -42,7 +49,11 @@ async function squashCommitMessage() {
 }
 
 async function tagRelease() {
-    console.log("Under the development...")
+    await releaseBetaTag()
+}
+
+async function tagRevert() {
+    await revertLatestBetaTag()
 }
 
 export default doBranch
