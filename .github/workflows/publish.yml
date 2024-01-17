@@ -1,9 +1,9 @@
 name: Publish GIT Wizard
 
 on:
-    push:
-      tags:
-        - 'v*.*.*'
+  push:
+    tags:
+      - 'v*.*.*'
 
 jobs:
   publish:
@@ -15,5 +15,6 @@ jobs:
 
       - name: Release the version
         run: |
-            docker build -t ghcr.io/sachintha00/api-staging:latest -f ./dockerfiles/production.Dockerfile .
-            docker run -e NPMJS_AUTHENTICATION_KEY=${{ secrets.NPMJS_AUTHENTICATION_KEY }} -e RELEASE_VERSION=${{needs.set_version.outputs.RELEASE_VERSION}} ghcr.io/sachintha00/api-staging:latest
+          docker build -t ghcr.io/sachintha00/api-staging:latest -f ./dockerfiles/production.Dockerfile .
+          docker run -e NPMJS_AUTHENTICATION_KEY=${{ secrets.NPMJS_AUTHENTICATION_KEY }} -e RELEASE_VERSION=${GITHUB_REF#refs/*/} ghcr.io/sachintha00/api-staging:latest
+

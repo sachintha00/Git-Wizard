@@ -13,11 +13,12 @@ async function doBranchMenu(){
         type: 'list',
         message: 'Choose one',
         choices: [
-            { name: '[01] stash the changes', value: doMenu.STASH },
-            { name: '[02] add changes to remote', value: doMenu.ADD_CHANGES },
-            { name: '[03] squash commit message', value: doMenu.SQUASH },
-            { name: '[04] release tag', value: doMenu.TAG_RELEASE },
-            { name: '[00] exit', value: doMenu.EXIT }
+            { name: '[01] Stash the changes', value: doMenu.STASH },
+            { name: '[02] Add changes to remote', value: doMenu.ADD_CHANGES },
+            { name: '[03] Squash to first commit', value: doMenu.SQUASH },
+            { name: '[04] Release beta tag', value: doMenu.TAG_RELEASE },
+            { name: '[05] Revert latest beta tag', value: doMenu.REVERT_LATEST_BETA_TAG },
+            { name: '[00] Exit', value: doMenu.EXIT }
         ]
     })
 
