@@ -1,0 +1,25 @@
+{
+  "name": "git-wizard",
+  "version": "1.0.0",
+  "description": "GitWizard is your hassle-free companion for seamless Git workflows. Effortlessly manage branching, merging, squashing, releases, and commits with this user-friendly tool. Say goodbye to complexity and embrace a wizardly approach to professional Git workflows for developers.",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "git-wizard": "./app.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Sachintha Madhawa",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "chalk-animation": "^2.0.3",
+    "clear": "^0.1.0",
+    "figlet": "^1.7.0",
+    "gradient-string": "^2.0.2",
+    "inquirer": "^9.2.12",
+    "nanospinner": "^1.1.0"
+  }
+}
