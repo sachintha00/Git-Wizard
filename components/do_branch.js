@@ -6,6 +6,7 @@ import { commitAndPush } from './git_push.js'
 import { releaseBetaTag, revertLatestBetaTag } from './beta_tag.js'
 import { squashToFirstCommitMessage } from './git_squash.js'
 import { exit } from 'process'
+import {rollBackVersion} from './version_tag.js'
 
 
 async function doBranch() {
