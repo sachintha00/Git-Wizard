@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import executeCommand from './execute_command.js';
-import getCurrentGitBranch from './current_git_branch.js';
+import executeCommand from '../helpers/execute_command.js';
+import getCurrentGitBranch from '../helpers/current_git_branch.js';
 import getBranchIdFromBranchName from './get_branch_id.js';
 import { exit } from 'process';
 import gradient from 'gradient-string'

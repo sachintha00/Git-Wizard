@@ -3,7 +3,7 @@ import inquirer from 'inquirer';
 import gradient from 'gradient-string';
 import chalkAnimation from 'chalk-animation';
 import figlet from 'figlet';
-import executeCommand from './execute_command.js';
+import executeCommand from '../helpers/execute_command.js';
 import { createSpinner } from 'nanospinner';
 
 const headerStyle = (text, color) => chalk.bold[color](text);

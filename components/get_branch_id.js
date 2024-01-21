@@ -1,4 +1,4 @@
-import getCurrentGitBranch from './current_git_branch.js'
+import getCurrentGitBranch from '../helpers/current_git_branch.js'
 
 async function getBranchIdFromBranchName() {
     const branchName = await getCurrentGitBranch()
