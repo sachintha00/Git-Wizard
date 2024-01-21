@@ -13,7 +13,7 @@ if (test.startsWith("do")) {
     console.log("this is fix branch");
 } else if (test === "master") {
     console.log("this is master branch");
-} else if (test === "dev-temp") {
+} else if (test === "dev") {
     await devBranch()
 } else {
     console.log("didn't match");
