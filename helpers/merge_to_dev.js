@@ -33,7 +33,6 @@ const mergeToDev = async (branch) => {
 };
 
 const chooseBranch = async () => {
-    console.log("Hello 1")
     const unmergedBranches = await getUnmergedBranches();
 
     if (unmergedBranches.length > 0) {
@@ -49,23 +48,22 @@ const chooseBranch = async () => {
         ]);
 
         const selectedBranch = answers.selectedBranch;
-        // await mergeToDev(selectedBranch);
+        await mergeToDev(selectedBranch);
     }
 };
 
 const mergeBranchesToDev = async () => {
     console.log(gradient.instagram(figlet.textSync('Merge  To  Dev')));
-    console.log(chalk.bold('\n🚀 Welcome to the Git Helper CLI 🚀\n'));
 
-    // const spinner = createSpinner('Loading...');
-    // spinner.start();
+    const spinner = createSpinner('Loading...');
+    spinner.start();
 
     try {
         await chooseBranch();
     } catch (error) {
         console.error(chalk.red(`Error: ${error.message}`));
     } finally {
-        // spinner.stop();
+        spinner.stop();
     }
 };
 
