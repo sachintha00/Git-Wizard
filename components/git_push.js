@@ -2,8 +2,8 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 import { createSpinner } from 'nanospinner';
 
-import executeCommand from './execute_command.js';
-import getCurrentGitBranch from './current_git_branch.js'
+import executeCommand from '../helpers/execute_command.js';
+import getCurrentGitBranch from '../helpers/current_git_branch.js'
 import { gitStatus } from './git_status.js'
 import { exit } from 'process';
 

@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import gradient from 'gradient-string'
 import figlet from 'figlet'
 
-import executeCommand from './execute_command.js';
+import executeCommand from '../helpers/execute_command.js';
 
 async function gitStatus() {
     try {
