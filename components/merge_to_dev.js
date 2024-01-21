@@ -23,14 +23,14 @@ const getUnmergedBranches = async () => {
 
 const mergeToDev = async (branch) => {
     const isFixBranch = branch.startsWith('fix');
+    console.log("\n")
+    const mergeSpinner = createSpinner("Merging branch into 'dev' branch. This may take a moment, please stand by...");
 
     if (isFixBranch) {
-        const mergeSpinner = createSpinner("Merging branch into 'dev' branch. This may take a moment, please stand by..");
         mergeSpinner.start();
         await executeCommand(`git merge --no-ff "${branch}" -m "Merge branch '${branch}' into dev"`);
         await executeCommand('git push');
     } else {
-        const mergeSpinner = createSpinner("Merging branch into 'dev' branch. This may take a moment, please stand by..");
         mergeSpinner.start();
         await executeCommand(`git merge ${branch}`);
         await executeCommand('git push');
@@ -62,6 +62,7 @@ const chooseBranch = async () => {
 
 const mergeBranchesToDev = async () => {
     console.log(gradient.instagram(figlet.textSync('Merge  To  Dev')));
+    console.log("\n")
 
     try {
         await chooseBranch();
