@@ -23,22 +23,28 @@ async function updateVersion(currentVersion) {
         const currentBranch = await getCurrentGitBranch();
         let updatedMinor = 0;
         let updatedPatch = 0;
+        let updatedMajor = 0;
         const [, major, minor, patch] = currentVersion.match(/beta-v(\d+)\.(\d+)\.(\d+)/) || [];
 
         if (currentBranch.startsWith('do')) {
             const branchId = await getBranchIdFromBranchName(currentBranch)
             // updatedMinor = parseInt(minor, 10) + 1;
             updatedMinor = branchId
+            updatedPatch = 0
         } else if (currentBranch.startsWith('fix')) {
             const branchId = await getBranchIdFromBranchName(currentBranch)
             // updatedPatch = parseInt(patch, 10) + 1;
             updatedPatch = branchId
+        } else if (currentBranch === "dev") {
+            updatedMajor = parseInt(major, 10) + 1;
+            updatedMinor = 0
+            updatedPatch = 0
         } else {
             console.warn('Unknown branch. Keeping the current version.');
             exit(0);
         }
 
-        const updatedVersion = `beta-v${major}.${updatedMinor}.${updatedPatch}`;
+        const updatedVersion = `beta-v${updatedMajor}.${updatedMinor}.${updatedPatch}`;
         return updatedVersion;
     } catch (error) {
         console.error(chalk.red('Error updating version:', error.message));
@@ -104,6 +110,9 @@ async function releaseBetaTag() {
                 const branchId = await getBranchIdFromBranchName(currentBranch)
                 updatedMinor = 0
                 updatedPatch = branchId
+            }else if (currentBranch === "dev") {
+                updatedMinor = 0
+                updatedPatch = 0
             }
 
             const updatedVersion = `beta-v1.${updatedMinor}.${updatedPatch}`;
