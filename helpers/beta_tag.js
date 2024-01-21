@@ -95,8 +95,6 @@ async function releaseBetaTag() {
                 exit(0)
             }
         } else {
-            const spinnerFirstBeta = createSpinner('Releasing beta tag...')
-            spinnerFirstBeta.start()
             let updatedMinor = 0;
             let updatedPatch = 0;
 
@@ -110,15 +108,39 @@ async function releaseBetaTag() {
                 const branchId = await getBranchIdFromBranchName(currentBranch)
                 updatedMinor = 0
                 updatedPatch = branchId
-            }else if (currentBranch === "dev") {
+            } else if (currentBranch === "dev") {
                 updatedMinor = 0
                 updatedPatch = 0
             }
 
             const updatedVersion = `beta-v1.${updatedMinor}.${updatedPatch}`;
-            await executeCommand(`git tag ${updatedVersion} && git push origin ${updatedVersion}`)
-            spinnerFirstBeta.success()
-            console.log(chalk.green('Successfuly release tag...'));
+
+            console.log("\n")
+
+            console.log(chalk.bold(chalk.blue("First Beta Tag:")));
+            console.log(chalk.yellow(`\t${updatedVersion}`));
+
+            console.log("\n")
+
+            const { shouldContinue } = await inquirer.prompt([
+                {
+                    type: 'confirm',
+                    name: 'shouldContinue',
+                    message: 'Do you want to continue with the release?',
+                },
+            ]);
+
+            if (shouldContinue) {
+                const spinnerFirstBeta = createSpinner('Releasing beta tag...')
+                spinnerFirstBeta.start()
+                await executeCommand(`git tag ${updatedVersion} && git push origin ${updatedVersion}`)
+                console.log(chalk.green('Successfuly release tag...'));
+                spinnerFirstBeta.success()
+                console.log('Successfuly release tag...');
+            } else {
+                console.log('Release aborted by the user.');
+                exit(0)
+            }
         }
     } catch (error) {
         console.error(chalk.red('Error in release process:', error.message));
