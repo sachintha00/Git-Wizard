@@ -2,6 +2,7 @@ import devBranchMenu from '../styles/dev_branch_menu.js'
 import { devMenu } from '../constants/enums.js'
 import { exit } from 'process'
 import mergeBranchesToDev from './merge_to_dev.js'
+import { releaseBetaTag, revertLatestBetaTag } from './beta_tag.js'
 
 
 async function devBranch() {
@@ -29,11 +30,11 @@ async function mergeBranch() {
 }
 
 async function tagRelease() {
-    console.log("Under the development1...")
+    await releaseBetaTag()
 }
 
 async function tagRevert() {
-    console.log("Under the development2...")
+    await revertLatestBetaTag()
 }
 
 export default devBranch
