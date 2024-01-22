@@ -14,8 +14,9 @@ async function masterBranchMenu(){
         message: 'Choose one',
         choices: [
             { name: '[01] Merge', value: masterMenu.MERGE_BRANCH },
-            { name: '[02] Release beta tag', value: masterMenu.TAG_RELEASE },
-            { name: '[03] Revert latest beta tag', value: masterMenu.REVERT_LATEST_BETA_TAG },
+            { name: '[02] Release version tag', value: masterMenu.TAG_RELEASE },
+            { name: '[03] Revert latest version tag', value: masterMenu.REVERT_LATEST_VERSION_TAG },
+            { name: '[04] Version rollback', value: masterMenu.ROLL_BACK },
             { name: '[00] Exit', value: masterMenu.EXIT }
         ]
     })

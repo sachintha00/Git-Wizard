@@ -15,7 +15,7 @@ async function masterBranch() {
         case masterMenu.TAG_RELEASE:
             await tagRelease()
             break;
-        case masterMenu.REVERT_LATEST_BETA_TAG:
+        case masterMenu.REVERT_LATEST_VERSION_TAG:
             await tagRevert()
             break;
         case masterMenu.ROLL_BACK:

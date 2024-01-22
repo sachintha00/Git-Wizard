@@ -6,6 +6,7 @@ import figlet from 'figlet';
 import executeCommand from '../helpers/execute_command.js';
 import getLatestCommitMessage from '../helpers/get_latest_commit_message_from_origin_master.js';
 import { createSpinner } from 'nanospinner';
+import { exit } from 'process'
 
 const headerStyle = (text, color) => chalk.bold[color](text);
 
@@ -28,7 +29,8 @@ const getCommitNewVersionCommitMessage = async (branch) => {
         const [, major, minor, patch] = latestCommitMessage.match(/v(\d+)\.(\d+)\.(\d+)/) || [];
         let updatedMinor = 0;
         let updatedPatch = 0;
-
+        
+        console.log("latestCommitMessage")
         if (!latestCommitMessage) {
             major = 1
             updatedMinor = 1
@@ -43,7 +45,7 @@ const getCommitNewVersionCommitMessage = async (branch) => {
             console.warn('Unknown branch. Keeping the current version.');
             exit(0);
         }
-
+        
         const updatedCommitVersion = `v${major}.${updatedMinor}.${updatedPatch}`;
         return updatedCommitVersion;
     } catch (error) {
@@ -53,7 +55,7 @@ const getCommitNewVersionCommitMessage = async (branch) => {
 }
 
 const mergeToMaster = async (branch) => {
-    const commitMessage = await getCommitNewVersionCommitMessage()
+    const commitMessage = await getCommitNewVersionCommitMessage(branch)
     console.log("\n")
     const mergeSpinner = createSpinner("Merging branch into 'master' branch. This may take a moment, please stand by...");
 
