@@ -1,5 +1,5 @@
-import doBranchMenu from '../styles/do_branch_menu.js'
-import { doMenu } from '../constants/enums.js'
+import fixBranchMenu from '../styles/fix_branch_menu.js'
+import { fixMenu } from '../constants/enums.js'
 import getBranchIdFromBranchName from './get_branch_id.js'
 import { getCommitMessage } from './git_commits.js'
 import { commitAndPush } from './git_push.js'
@@ -8,26 +8,26 @@ import { squashToFirstCommitMessage } from './git_squash.js'
 import { exit } from 'process'
 
 
-async function doBranch() {
-    const selectedOption = await doBranchMenu()
+async function fixBranch() {
+    const selectedOption = await fixBranchMenu()
     console.clear()
-    switch (selectedOption.do_branch_option) {
-        case doMenu.STASH:
+    switch (selectedOption.fix_branch_option) {
+        case fixMenu.STASH:
             await stash()
             break;
-        case doMenu.ADD_CHANGES:
+        case fixMenu.ADD_CHANGES:
             await addChangesToRemote()
             break;
-        case doMenu.SQUASH:
+        case fixMenu.SQUASH:
             await squashCommitMessage()
             break;
-        case doMenu.TAG_RELEASE:
+        case fixMenu.TAG_RELEASE:
             await tagRelease()
             break;
-        case doMenu.REVERT_LATEST_BETA_TAG:
+        case fixMenu.REVERT_LATEST_BETA_TAG:
             await tagRevert()
             break;
-        case doMenu.EXIT:
+        case fixMenu.EXIT:
             exit(0)
         default:
             break;
@@ -40,12 +40,12 @@ async function stash() {
 
 async function addChangesToRemote() {
     const branchId = await getBranchIdFromBranchName()
-    const commitMessage = await getCommitMessage({ branchNumber: branchId, issueType: "Feat", topic: "Add Changes" })
+    const commitMessage = await getCommitMessage({ branchNumber: branchId, issueType: "Fix", topic: "Add Changes" })
     await commitAndPush(commitMessage)
 }
 
 async function squashCommitMessage() {
-    await squashToFirstCommitMessage("Feat")
+    await squashToFirstCommitMessage("Fix")
 }
 
 async function tagRelease() {
@@ -56,4 +56,4 @@ async function tagRevert() {
     await revertLatestBetaTag()
 }
 
-export default doBranch
+export default fixBranch
