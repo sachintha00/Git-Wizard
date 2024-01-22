@@ -8,7 +8,7 @@ import { releaseVersionTag, revertLatestVersionTag, rollBackVersion} from './ver
 async function masterBranch() {
     const selectedOption = await masterBranchMenu()
     console.clear()
-    switch (selectedOption.dev_branch_option) {
+    switch (selectedOption.master_branch_option) {
         case masterMenu.MERGE_BRANCH:
             await mergeBranch()
             break;
