@@ -10,8 +10,15 @@ import { exit } from 'process';
 
 async function getFirstCommitSHA() {
     const currentBranch = await getCurrentGitBranch();
-    const sha = await executeCommand(`git rev-list ^dev ${currentBranch} | tail -n 1`);
-    const message = await executeCommand(`git log --format=%B -n 1 ${sha}`);
+    let sha = null
+    let message = null
+    if (currentBranch.startsWith("do")) {
+        sha = await executeCommand(`git rev-list ^dev ${currentBranch} | tail -n 1`);
+        message = await executeCommand(`git log --format="%s" -n 1 ${sha}`);
+    } else if (currentBranch.startsWith("fix")) {
+        sha = await executeCommand(`git rev-list ^master ${currentBranch} | tail -n 1`);
+        message = await executeCommand(`git log --format="%s" -n 1 ${sha}`);
+    }
     return { sha, message };
 }
 
@@ -59,4 +66,4 @@ async function squashToFirstCommitMessage(issueType) {
     }
 }
 
-export {squashToFirstCommitMessage };
+export { squashToFirstCommitMessage };

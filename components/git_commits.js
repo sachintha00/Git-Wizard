@@ -15,7 +15,7 @@ async function getCommitMessage({ branchNumber, issueType, topic }) {
         },
     ]);
 
-    return `#${branchNumber} Feat: ${commitMessage}`;
+    return `#${branchNumber} ${issueType}: ${commitMessage}`;
 }
 
 export { getCommitMessage }

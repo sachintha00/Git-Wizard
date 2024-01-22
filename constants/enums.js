@@ -26,7 +26,7 @@ export const devMenu = {
 export const masterMenu = {
   MERGE_BRANCH: 1,
   TAG_RELEASE: 2,
-  REVERT_LATEST_BETA_TAG: 3,
-  ROLL_BACK: 3,
+  REVERT_LATEST_VERSION_TAG: 3,
+  ROLL_BACK: 4,
   EXIT: 0,
 };
