@@ -30,8 +30,7 @@ const getCommitNewVersionCommitMessage = async (branch) => {
         let updatedMinor = 0;
         let updatedPatch = 0;
         
-        console.log("latestCommitMessage")
-        if (!latestCommitMessage) {
+        if (!latestCommitMessage || major === undefined) {
             major = 1
             updatedMinor = 1
             updatedPatch = 0
