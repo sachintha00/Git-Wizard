@@ -7,7 +7,7 @@ import devBranch from './components/dev_branch.js'
 import masterBranch from './components/master_branch.js'
 import fixBranch from './components/fix_branch.js'
 
-welcomeBanner({ welcomeText: "~GIT  WIZARD~", description: "Code Dreams, Build Realities!", versionTag: "v1.7.0" })
+welcomeBanner({ welcomeText: "~GIT  WIZARD~", description: "Code Dreams, Build Realities!", versionTag: "v1.8.0" })
 const branch = await getCurrentGitBranch()
 if (branch.startsWith("do")) {
     await doBranch()

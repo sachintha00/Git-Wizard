@@ -60,7 +60,7 @@ If you encounter any challenges during this process, reference the attached scre
 
  - Begin by creating a branch named ```Dev``` based on the ```master``` branch, as illustrated below. Subsequently, push the newly created ```dev``` branch to the origin.
 
-    ![step 1](https://via.placeholder.com/468x300?text=Step+1)
+    ![step 1](./doc/dev.png)
 
     You can use the following command to create and push the ```dev``` branch to the origin:
     ```bash
@@ -69,27 +69,27 @@ If you encounter any challenges during this process, reference the attached scre
 
     This tool is visible within the ```dev``` branch, as illustrated below.
 
-    ![step 1](https://via.placeholder.com/468x300?text=Dev+Screenshot)
+    ![step 1](./doc/dev_menu.png)
 
  - To initiate the development of a new feature, it is recommended to create a ```do``` branch off the ```dev``` branch, following the steps below:
 
-    ![step 1](https://via.placeholder.com/468x300?text=Step+2)
+    ![step 1](./doc/feature.png)
 
     This tool is accessible within the ```do``` branch, as demonstrated below.
 
-    ![step 1](https://via.placeholder.com/468x300?text=Do+Screenshot)
+    ![step 1](./doc/do_fix_menu.png)
 
  - To address a bug fix, it is advisable to create a ```fix``` branch based on the ```master``` branch, following the steps outlined below:
 
-    ![step 1](https://via.placeholder.com/468x300?text=Step+3)
+    ![step 1](./doc/fix.png)
 
     This tool is visible within the ```fix``` branch, as illustrated below.
 
-    ![step 1](https://via.placeholder.com/468x300?text=Fix+Screenshot)
+    ![step 1](./doc/do_fix_menu.png)
 
  - Upon executing this in the ```master``` branch, you will encounter a menu resembling the one below.
 
-    ![step 1](https://via.placeholder.com/468x300?text=Master+Screenshot)
+    ![step 1](./doc/master_menu.png)
 ## Author 👽
 
 - [@Sachintha Madhawa](https://www.github.com/sachintha00)
