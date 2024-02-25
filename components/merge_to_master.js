@@ -29,15 +29,18 @@ const getCommitNewVersionCommitMessage = async (branch) => {
         const [, major, minor, patch] = latestCommitMessage.match(/v(\d+)\.(\d+)\.(\d+)/) || [];
         let updatedMinor = 0;
         let updatedPatch = 0;
+        let updateMajor = 0;
         
-        if (!latestCommitMessage || major === undefined) {
-            major = 1
+        if (!latestCommitMessage || major === undefined || latestCommitMessage === 'Initial commit') {
+            updateMajor = 1
             updatedMinor = 1
             updatedPatch = 0
         } else if (branch.startsWith('fix')) {
+            updateMajor = major;
             updatedMinor = minor
             updatedPatch = parseInt(patch, 10) + 1;
         } else if (branch === "dev") {
+            updateMajor = major;
             updatedMinor = parseInt(minor, 10) + 1;
             updatedPatch = 0
         } else {
@@ -45,7 +48,7 @@ const getCommitNewVersionCommitMessage = async (branch) => {
             exit(0);
         }
         
-        const updatedCommitVersion = `v${major}.${updatedMinor}.${updatedPatch}`;
+        const updatedCommitVersion = `v${updateMajor}.${updatedMinor}.${updatedPatch}`;
         return updatedCommitVersion;
     } catch (error) {
         console.error(chalk.red('Error updating version:', error.message));
@@ -56,7 +59,7 @@ const getCommitNewVersionCommitMessage = async (branch) => {
 const mergeToMaster = async (branch) => {
     const commitMessage = await getCommitNewVersionCommitMessage(branch)
     console.log("\n")
-    const mergeSpinner = createSpinner("Merging branch into 'master' branch. This may take a moment, please stand by...");
+    const mergeSpinner = createSpinner(`Merging ${branch} branch into 'master' branch. This may take a moment, please stand by...`);
 
     mergeSpinner.start();
     await executeCommand(`git merge --no-ff "${branch}" -m ${commitMessage} `);
